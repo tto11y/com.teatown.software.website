@@ -1,0 +1,86 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import CaseStudyCard from "../components/CaseStudyCard.astro";
+
+const home = await getEntry("pages", "home");
+if (!home) throw new Error("Missing content: src/content/pages/home.md");
+const { Content } = await render(home);
+
+const services = (await getCollection("services", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const cases = (await getCollection("case-studies", ({ data }) => !data.draft))
+  .sort((a, b) => +b.data.date - +a.data.date)
+  .filter((c) => c.data.featured)
+  .slice(0, 2);
+---
+
+<BaseLayout title={home.data.title} description={home.data.description}>
+  <section class="max-w-2xl">
+    <h1 class="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+      {home.data.heading ?? home.data.title}
+    </h1>
+    <div class="prose mt-6 text-lg text-muted">
+      <Content />
+    </div>
+    <div class="mt-8 flex gap-4">
+      <a
+        href="/contact"
+        class="rounded-lg bg-brand px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+      >
+        Start a conversation
+      </a>
+      <a
+        href="/case-studies"
+        class="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-brand hover:text-brand"
+      >
+        See our work
+      </a>
+    </div>
+  </section>
+
+  <section class="mt-20">
+    <div class="flex items-baseline justify-between">
+      <h2 class="text-2xl font-semibold text-ink">What we do</h2>
+      <a href="/services" class="text-sm font-medium text-brand">All services &rarr;</a>
+    </div>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.map((s) => (
+          <ServiceCard
+            href={`/services/${s.id}`}
+            title={s.data.title}
+            summary={s.data.summary}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    cases.length > 0 && (
+      <section class="mt-20">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-2xl font-semibold text-ink">Selected work</h2>
+          <a href="/case-studies" class="text-sm font-medium text-brand">
+            All case studies &rarr;
+          </a>
+        </div>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
+          {cases.map((c) => (
+            <CaseStudyCard
+              href={`/case-studies/${c.id}`}
+              title={c.data.title}
+              client={c.data.client}
+              summary={c.data.summary}
+              cover={c.data.cover}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

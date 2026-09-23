@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CaseStudyCard from "../../components/CaseStudyCard.astro";
+
+const cases = (
+  await getCollection("case-studies", ({ data }) => !data.draft)
+).sort((a, b) => +b.data.date - +a.data.date);
+---
+
+<BaseLayout
+  title="Case studies"
+  description="Selected engagements and the outcomes we delivered."
+>
+  <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+    Case studies
+  </h1>
+  <p class="mt-4 max-w-2xl text-lg text-muted">
+    Selected engagements and the outcomes we delivered.
+  </p>
+  <div class="mt-10 grid gap-6 sm:grid-cols-2">
+    {
+      cases.map((c) => (
+        <CaseStudyCard
+          href={`/case-studies/${c.id}`}
+          title={c.data.title}
+          client={c.data.client}
+          summary={c.data.summary}
+          cover={c.data.cover}
+        />
+      ))
+    }
+  </div>
+</BaseLayout>

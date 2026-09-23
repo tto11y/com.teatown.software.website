@@ -1,0 +1,28 @@
+---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = await getEntry("pages", "contact");
+if (!page) throw new Error("Missing content: src/content/pages/contact.md");
+const { Content } = await render(page);
+
+// v1: no form backend. A mailto keeps it static; swap for a real form later.
+const email = "office@teatown.es";
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <div class="max-w-2xl">
+    <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      {page.data.heading ?? page.data.title}
+    </h1>
+    <div class="prose mt-6 text-muted">
+      <Content />
+    </div>
+    <a
+      href={`mailto:${email}`}
+      class="mt-8 inline-block rounded-lg bg-brand px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+    >
+      Email us at {email}
+    </a>
+  </div>
+</BaseLayout>
