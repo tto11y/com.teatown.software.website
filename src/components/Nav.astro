@@ -1,0 +1,40 @@
+---
+const links = [
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header class="border-b border-slate-200">
+  <nav
+    class="mx-auto flex max-w-5xl items-center justify-between px-page py-4"
+    aria-label="Primary"
+  >
+    <a href="/" class="text-lg font-semibold tracking-tight text-ink">
+      Teatown
+    </a>
+    <ul class="flex items-center gap-6 text-sm">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class:list={[
+                "transition-colors hover:text-brand",
+                isActive(l.href) ? "text-brand font-medium" : "text-muted",
+              ]}
+              aria-current={isActive(l.href) ? "page" : undefined}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
