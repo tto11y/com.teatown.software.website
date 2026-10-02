@@ -12,7 +12,9 @@ const { Content } = await render(page);
     <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl">
       {page.data.heading ?? page.data.title}
     </h1>
-    <div class="prose mt-6 text-muted">
+    <div class="prose prose-slate max-w-none
+                prose-headings:text-ink prose-h2:text-2xl
+                prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
       <Content />
     </div>
   </article>
