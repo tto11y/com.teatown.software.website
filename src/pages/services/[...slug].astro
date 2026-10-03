@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const services = await getCollection("services", ({ data }) => !data.draft);
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+---
+
+<BaseLayout title={service.data.title} description={service.data.description}>
+  <article class="max-w-2xl">
+    <a href="/services" class="text-sm font-medium text-brand">
+      &larr; All services
+    </a>
+    <h1 class="mt-4 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      {service.data.title}
+    </h1>
+    <p class="mt-4 text-lg text-muted">{service.data.summary}</p>
+    <div class="prose mt-8 text-muted">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
