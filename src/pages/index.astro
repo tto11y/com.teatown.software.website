@@ -12,10 +12,7 @@ const services = (await getCollection("services", ({ data }) => !data.draft))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-const cases = (await getCollection("case-studies", ({ data }) => !data.draft))
-  .sort((a, b) => +b.data.date - +a.data.date)
-  .filter((c) => c.data.featured)
-  .slice(0, 2);
+const cases = 0;
 ---
 
 <BaseLayout title={home.data.title} description={home.data.description}>
