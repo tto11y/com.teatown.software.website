@@ -64,4 +64,4 @@ We do that by setting unreasonably high goals that force us to question the stat
 
 What we strive toward for our clients: **MTTR = 0**
 
-**If that resonates with you, [talk to`` us](/contact)**
+**If that resonates with you, [talk to us](/contact)**
