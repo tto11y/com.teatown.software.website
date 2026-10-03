@@ -27,6 +27,7 @@ const services = defineCollection({
     icon: z.string().optional(), // icon key (lucide/heroicons name)
     order: z.number().default(0),
     featured: z.boolean().default(false),
+    show: z.boolean().default(true),
   }),
 });
 
