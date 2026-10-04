@@ -1,0 +1,21 @@
+---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const page = await getEntry("pages", "legal-notice");
+if (!page) throw new Error("Missing content: src/content/pages/legal-notice.md");
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <article class="max-w-2xl">
+    <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl mb-3">
+      {page.data.heading ?? page.data.title}
+    </h1>
+    <div class="prose prose-slate max-w-none
+                prose-headings:text-ink prose-h2:text-2xl
+                prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
