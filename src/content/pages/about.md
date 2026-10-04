@@ -18,9 +18,11 @@ In other words, businesses lose revenue, their customers get mad, and they gradu
 
 Handling this in-house will take significantly longer than collaborating with external partners because the necessary expertise has to be either hired or tediously built within the team. 
 
-This means, the costs are higher, the risk is higher, and there’s also the added issue of being too close to the problem to see it clearly. 
+Either way, both approaches take a lot of time, resulting in increased costs, and higher risk.
 
-Until then, the problem persists, and costs time and money.
+Either way, the problem persists.
+
+On top of that, being too close to the problem to see it clearly is an issue in itself.
 
 ## How clients feel the difference
 
