@@ -12,7 +12,7 @@ Application malfunctions are visible to users before the company’s own employe
 
 Leading to customer resentment, lost revenue, and bad reputation.
 
-Additionally, in most cases, there is no connection between “tech” and “business”. No one can say what impact a malfunction or system failure will have on the business and on the company’s customers.
+Additionally, in most cases, there is no connection between “tech” and “business”. No one can tell what impact a malfunction or system failure will have on the business and on the company’s customers.
 
 In other words, businesses lose revenue, their customers get mad, and they gradually gain a bad reputation. Without them even noticing it.
 
