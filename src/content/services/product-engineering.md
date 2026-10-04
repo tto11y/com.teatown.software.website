@@ -16,7 +16,7 @@ Our approach resembles around three pillars:
 
 Senior engineers embedded with your team, shipping in small increments.
 
-You can rely on us regarding:
+You can count on us regarding:
 
 - Full product implementation 
 - Feature implementation 
