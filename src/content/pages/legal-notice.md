@@ -38,7 +38,7 @@ The Website may contain links to third-party sites. The Owner is not responsible
 
 ## 6. Data protection
 
-The processing of personal data collected through the Website is governed by the [Privacy Policy](/privacy-policy) and the [Cookies Policy], in accordance with Regulation (EU) 2016/679 (GDPR) and Organic Law 3/2018 (LOPDGDD).
+The processing of personal data collected through the Website is governed by the [Privacy Policy](/privacy-policy), in accordance with Regulation (EU) 2016/679 (GDPR) and Organic Law 3/2018 (LOPDGDD).
 
 ## 7. Governing law and jurisdiction
 
