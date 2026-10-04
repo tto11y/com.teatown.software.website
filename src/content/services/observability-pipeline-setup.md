@@ -7,16 +7,14 @@ order: 1
 featured: true
 ---
 
-A fully functioning observability stack, built and handed over.
-
-We partner with teams to design, build, and ship resilient observability pipelines that scale.
+Clients reach out to us if they need resilient observability pipelines that scale.
 
 Our approach resembles around three pillars:
-1. Prioritize user experience
+1. Prioritize resilience
 2. Ship small increments fast
 3. Rely on industry standards
 
-You can rely on us regarding:
+You can count on us regarding:
 
 - OpenTelemetry pipeline setup
 - OpenTelemetry collector configuration
