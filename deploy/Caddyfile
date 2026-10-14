@@ -4,12 +4,8 @@
 #
 # Replace teatown.es with the real production domain if it differs.
 
-# Redirect www -> apex.
-www.teatown.es {
-	redir https://teatown.es{uri} permanent
-}
-
-teatown.es {
+# Canonical — serves the site
+teatown.at {
 	root * /var/www/teatown
 	encode zstd gzip
 	file_server
@@ -25,4 +21,14 @@ teatown.es {
 
 	# Astro's static build emits /foo/index.html; Caddy serves it for /foo.
 	try_files {path} {path}/ {path}/index.html
+}
+
+# www.at -> apex (permanent; www->apex is a settled decision)
+www.teatown.at {
+	redir https://teatown.at{uri} permanent
+}
+
+# .es -> .at (temporary for now; flip to `permanent` once .es folds in for good)
+teatown.es, www.teatown.es {
+	redir https://teatown.at{uri}
 }
