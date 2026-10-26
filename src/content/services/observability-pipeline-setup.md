@@ -1,24 +1,24 @@
 ---
-title: "Observability Pipeline Setup"
-description: "Fully-fledged observability pipeline setup tailored to your needs."
-summary: "Fully-fledged observability pipeline setup tailored to your needs, with a senior team that owns outcomes."
+title: "Glasklare Einblicke in Ihre IT Systeme"
+description: "Vollumfänglicher Aufbau einer Observability-Pipeline angepasst auf Ihre Bedürfnisse"
+summary: "Vollumfänglicher Aufbau einer Observability-Pipeline angepasst auf Ihre Bedürfnisse"
 icon: "code"
 order: 1
 featured: true
 ---
 
-Clients reach out to us if they need resilient observability pipelines that scale.
+Kunden kommen zu uns, wenn sie resiliente Observability-Pipelines benötigen, die skalieren.
 
-Our approach resembles around three pillars:
-1. Prioritize resilience
-2. Ship small increments fast
-3. Rely on industry standards
+Unser Ansatz baut auf drei Pfeiler auf:
+1. Resilizenz priorisieren
+2. Kleine Verbesserungen schnell liefern
+3. Auf Industriestandards vertrauen
 
-You can count on us regarding:
+Sie können auf uns in den folgenden Bereichen zählen:
 
-- OpenTelemetry pipeline setup
-- OpenTelemetry collector configuration
-- Grafana stack configuration (Loki, Tempo, Mimir)
-- Prometheus configuration
-- Labeling strategies
+- Aufbau einer OpenTelemetry-Pipeline
+- OpenTelemetry-Kollector-Konfiguration
+- Grafana-Stack-Konfiguration (Loki, Tempo, Mimir)
+- Prometheus-Konfiguration
+- Labeling Strategien
 - Dashboarding
