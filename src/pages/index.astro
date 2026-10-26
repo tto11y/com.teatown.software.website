@@ -1,44 +1,227 @@
 ---
-import { getCollection, getEntry, render } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
-import CaseStudyCard from "../components/CaseStudyCard.astro";
 
 const home = await getEntry("pages", "home");
 if (!home) throw new Error("Missing content: src/content/pages/home.md");
-const { Content } = await render(home);
 
-const services = (await getCollection("services", ({ data }) => !data.draft && data.show))
+const services = (
+  await getCollection("services", ({ data }) => !data.draft && data.show)
+)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-const cases = 0;
+const specialization = 'Observability Engineering für Unternehmen in Deutschland und Österreich';
+//const hook = 'Deine IT-Systeme laufen. Immer.';
+const hook = 'Erreiche eine Verfügbarkeit von mehr als 99%';
+//const hook = 'Erreiche eine MTTR unter 15 Minuten';
+const dreamOutcomeWords = ['Verfügbarkeit', '99%'];
+
+// The number that pins the dream outcome — set to a figure you can defend.
+const dreamOutcome = 'MTTR unter 15 Minuten';
+const problemStatement = 'Kunden kommen zu uns, wenn Deployments regelmäßig zu Ausfällen und Kopfschmerzen führen';
+
+const pains = [
+  "Niemand kann sagen, was ein Ausfall das Business wirklich kostet.",
+  "Deine Systeme sehen gesund aus, aber trotzdem kommen deine Nutzer nicht durch.",
+  "Nutzer bemerken Störungen bevor es deine eigenen Leute tun.",
+  "In-house aufbauen kostet Zeit und Geld, und birgt Risiken.",
+];
+
+// see https://bitwarden.com/ as inspiration
+// References — swap `name` wordmarks for official logo files when available.
+const references = [
+  { name: "Erste Digital", url: "https://www.erstedigital.com" },
+  { name: "Porsche Informatik", url: "https://www.porscheinformatik.com" },
+  { name: "EBCONT", url: "https://www.ebcont.com" },
+  { name: "LUMASERV", url: "https://lumaserv.com/" },
+  { name: "Flux Consulting", url: "https://flux-consulting.at/" },
+  { name: "Untis", url: "https://www.untis.at/" },
+];
 ---
 
 <BaseLayout title={home.data.title} description={home.data.description}>
-  <section class="max-w-2xl">
-    <h1 class="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-      {home.data.heading ?? home.data.title}
+  {/* ───────────────────────── HERO ───────────────────────── */}
+  <section class="text-center">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+      {specialization}
+    </p>
+    <h1
+      class="mt-4 mx-auto max-w-3xl text-4xl font-bold tracking-tight text-ink sm:text-6xl"
+    >
+    <!-- todo see https://bitwarden.com/ and https://bitwarden.com/products/secrets-manager/ for inspiration -->
+      Erreiche eine <span class="text-accent">{dreamOutcomeWords[0]}</span> von mehr als <span class="text-accent">{dreamOutcomeWords[1]}</span>
     </h1>
-    <div class="prose mt-6 text-lg text-muted">
-      <Content />
-    </div>
-    <div class="mt-8 flex gap-4">
-      <a
-        href="/contact"
-        class="rounded-lg bg-brand px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
+    <!-- <p class="mt-5 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+      Erreiche eine <span class="text-accent">{dreamOutcome}</span>.
+    </p> -->
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-muted sm:text-xl">
+       {problemStatement}
+    </p>
+
+    {/* audience toggle */}
+    <div
+      class="mt-10 inline-flex rounded-full border border-slate-200 bg-subtle p-1"
+      role="tablist"
+      aria-label="Zielgruppe"
+      data-segmented
+    >
+      <button
+        role="tab"
+        data-aud="dev"
+        aria-selected="true"
+        class="rounded-full px-5 py-2 text-sm font-medium text-muted transition-colors aria-selected:bg-accent aria-selected:text-white"
       >
-        Start a conversation
-      </a>
+        Für Entwickler
+      </button>
+      <button
+        role="tab"
+        data-aud="lead"
+        aria-selected="false"
+        class="rounded-full px-5 py-2 text-sm font-medium text-muted transition-colors aria-selected:bg-accent aria-selected:text-white"
+      >
+        Für Führungskräfte
+      </button>
+    </div>
+
+    {/* panels + metric (centered, stacked) */}
+    <div class="mt-10 space-y-12">
+      <div>
+        <div data-panel="dev">
+          <h2 class="text-2xl font-semibold text-ink sm:text-3xl">
+            Behebe Incidents, bevor sie jemand bemerkt.
+          </h2>
+          <p class="mt-4 text-muted">
+            Du führst die IT-Systeme, nicht die IT-Systeme dich.
+          </p>
+          <ul class="mt-6 inline-block space-y-2.5 text-left text-sm text-ink">
+            <li class="flex gap-2.5">
+              <span class="text-accent">▸</span> Jede Änderung und ihre Wirkung – in Echtzeit
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-accent">▸</span> Root Cause in Minuten, nicht Stunden
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-accent">▸</span> Weniger Nachtschichten, mehr Kontrolle
+            </li>
+          </ul>
+        </div>
+
+        <div data-panel="lead" hidden>
+          <h2 class="text-2xl font-semibold text-ink sm:text-3xl">
+            Wisse, was jede Änderung für dein Business bedeutet.
+          </h2>
+          <p class="mt-4 text-muted">
+            Wir verbinden Technik und Business. Und schützen Umsatz, Reputation
+            und das Vertrauen deiner Kunden. Du führst das Business, nicht das
+            Business dich.
+          </p>
+          <ul class="mt-6 inline-block space-y-2.5 text-left text-sm text-ink">
+            <li class="flex gap-2.5">
+              <span class="text-accent">▸</span> Ausfälle erkennen, bevor deine Kunden es tun
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-accent">▸</span> Technik-Risiken in Business-Sprache
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-accent">▸</span> Umsatz und Reputation geschützt
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="/contact"
+            class="rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
+          >
+            Gespräch starten
+          </a>
+          <a
+            href="/services"
+            class="rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent"
+          >
+            Leistungen ansehen
+          </a>
+        </div>
+      </div>
+
+      {/* MTTR metric card with uptime pulse */}
+      <div class="mx-auto max-w-md rounded-2xl border border-slate-200 bg-subtle/70 p-8">
+        <p class="text-sm text-muted">Mittlere Wiederherstellungszeit</p>
+        <div class="mt-2 flex items-baseline justify-center gap-3">
+          <span class="text-5xl font-bold tracking-tight text-ink">MTTR</span>
+          <span class="text-5xl font-bold text-accent">
+            <span data-metric="dev">→&nbsp;Minuten</span>
+            <span data-metric="lead" hidden>→&nbsp;0</span>
+          </span>
+        </div>
+        <svg
+          class="pulse mt-6 w-full"
+          viewBox="0 0 400 80"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0 40 H120 l12 -26 l14 52 l12 -40 l10 20 H400"
+            stroke="var(--color-accent)"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+        <p class="mt-2 text-xs text-muted">Von der Störung zur Wiederherstellung im Handumdrehen.</p>
+      </div>
     </div>
   </section>
 
-  <section class="mt-20">
-    <div class="flex items-baseline justify-between">
-      <h2 class="text-2xl font-semibold text-ink">What you get</h2>
-      <a href="/services" class="text-sm font-medium text-brand">All services &rarr;</a>
+  {/* ─────────────────────── REFERENCES ─────────────────────── */}
+  <section class="mt-16 border-y border-slate-200 py-10">
+    <p class="text-center text-sm font-medium uppercase tracking-[0.15em] text-muted">
+      Unternehmen, die auf uns vertrauen
+    </p>
+    <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+      {
+        references.map((r) => (
+          <li>
+            <a
+              href={r.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-lg font-semibold tracking-tight text-slate-400 transition-colors hover:text-slate-600"
+            >
+              {r.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {/* ───────────────────────── PAINS ───────────────────────── */}
+  <section class="mt-24">
+    <h2 class="text-center text-2xl font-semibold text-ink sm:text-3xl">
+      Das Problem, das niemand kommen sieht
+    </h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        pains.map((p) => (
+          <div class="rounded-xl border border-slate-200 bg-white p-5 text-ink">
+            {p}
+          </div>
+        ))
+      }
     </div>
-    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <p class="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-muted">
+      Umsatz weg, Kunden verärgert, Reputation beschädigt – ohne dass es jemand
+      merkt.
+    </p>
+  </section>
+
+  {/* ──────────────────────── SERVICES ──────────────────────── */}
+  <section class="mt-24">
+    <h2 class="text-center text-2xl font-semibold text-ink">Was du bekommst</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((s) => (
           <ServiceCard
@@ -49,29 +232,47 @@ const cases = 0;
         ))
       }
     </div>
+    <div class="mt-8 text-center">
+      <a href="/services" class="text-sm font-medium text-accent">
+        Alle Leistungen &rarr;
+      </a>
+    </div>
   </section>
 
-  {
-    cases.length > 0 && (
-      <section class="mt-20">
-        <div class="flex items-baseline justify-between">
-          <h2 class="text-2xl font-semibold text-ink">Selected work</h2>
-          <a href="/case-studies" class="text-sm font-medium text-brand">
-            All case studies &rarr;
-          </a>
-        </div>
-        <div class="mt-6 grid gap-6 sm:grid-cols-2">
-          {cases.map((c) => (
-            <CaseStudyCard
-              href={`/case-studies/${c.id}`}
-              title={c.data.title}
-              client={c.data.client}
-              summary={c.data.summary}
-              cover={c.data.cover}
-            />
-          ))}
-        </div>
-      </section>
-    )
-  }
+  <style>
+    .pulse path {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: pulse-draw 3.2s ease-in-out infinite;
+    }
+    @keyframes pulse-draw {
+      0% { stroke-dashoffset: 600; }
+      55% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: 0; opacity: 0.25; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pulse path { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <script is:inline>
+    (() => {
+      const seg = document.querySelector("[data-segmented]");
+      if (!seg) return;
+      seg.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-aud]");
+        if (!btn) return;
+        const aud = btn.dataset.aud;
+        seg
+          .querySelectorAll("[data-aud]")
+          .forEach((b) => b.setAttribute("aria-selected", String(b === btn)));
+        document
+          .querySelectorAll("[data-panel], [data-metric]")
+          .forEach((el) => {
+            el.hidden =
+              el.dataset.panel !== aud && el.dataset.metric !== aud;
+          });
+      });
+    })();
+  </script>
 </BaseLayout>

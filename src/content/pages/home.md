@@ -1,8 +1,7 @@
 ---
-title: "Teatown"
-description: "Clients contact us if their IT systems look fine, but their users cannot reach them. In doing so, they prevent customer resentment, lost revenue, and bad reputation."
-heading: "Systems incapable of failing."
+title: "Teatown Observability Engineering"
+description: "Deine IT-Systeme laufen. Immer. Wir machen Ausfälle unsichtbar, bevor sie deine Kunden erreichen und senken deine MTTR messbar."
+heading: "Deine Systeme laufen. Immer."
 ---
 
-Clients contact us if their IT systems look fine, but their users cannot reach them.
-In doing so, they prevent customer resentment, lost revenue, and bad reputation.
+Du führst dein System, nicht das System dich.
