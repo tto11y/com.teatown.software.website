@@ -8,6 +8,9 @@
   --color-muted: #475569;
   --color-brand: #459ac0;
   --color-brand-dark: #31799b;
+  /* Accent = the vivid logo cyan, for highlights/energy (additive). */
+  --color-accent: #019cc4;
+  --color-accent-dark: #017a99;
   --color-surface: #ffffff;
   --color-subtle: #f5f7f7;
 
