@@ -1,24 +1,22 @@
 ---
-title: "Product Engineering"
-description: "Full-stack delivery from idea to production."
-summary: "Full-stack delivery from idea to production, with a senior team that owns outcomes."
+title: "Produkt-Entwicklung"
+description: "Full-stack Entwicklung von der Idee bis zur Produktion"
+summary: "Full-stack Entwicklung von der Idee bis zur Produktion"
 icon: "code"
 order: 3
 featured: true
 ---
 
-We partner with teams to design, build, and ship software that lasts. 
+Kunden kommen zu uns, wenn sie Software designen, bauen und liefern wollen, die Bestand hat.
 
-Our approach resembles around three pillars: 
-1. Prioritize user experience 
-2. Ship small increments fast 
-3. Rely on industry standards 
+Unser Ansatz baut auf drei Pfeiler auf:
+1. User-Experience priorisieren
+2. Kleine Verbesserungen schnell liefern
+3. Auf Industriestandards vertrauen
 
-Senior engineers embedded with your team, shipping in small increments.
+Sie können auf uns in den folgenden Bereichen zählen:
 
-You can count on us regarding:
-
-- Full product implementation 
-- Feature implementation 
-- Library upgrades 
+- Product-Implementierung 
+- Feature-Implementierung
+- Library Upgrades
 - Bug fixing 
